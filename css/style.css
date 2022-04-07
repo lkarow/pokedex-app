@@ -1,0 +1,58 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "VT323", sans-serif;
+  font-size: 30px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+header {
+  display: flex;
+  left: 0;
+  margin-bottom: 100px;
+  top: 0;
+  width: 100%;
+}
+
+.diagonal-box {
+  background-color: rgb(105 161 207);
+  height: 200px;
+  position: relative;
+  width: 100%;
+}
+
+.diagonal-box::after {
+  background: inherit;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 100%;
+  position: absolute;
+  transform: skewY(3deg);
+  transform-origin: left bottom;
+  width: 100%;
+  z-index: -1;
+}
+
+h1 {
+  color: rgb(255 217 0);
+  font-family: "Pokemon Solid", sans-serif;
+  font-size: 80px;
+  text-shadow: -2px 0 #fff, 0 2px #fff, 2px 0 #fff, 0 -2px #fff;
+}
+
+.pokename {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.script-output {
+  border: 8px double #000;
+  display: inline-block;
+  padding: 10px;
+  text-align: start;
+}
