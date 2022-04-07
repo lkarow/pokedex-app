@@ -17,6 +17,15 @@ pokemonList = [
   }
 ];
 
-document.write(`Pokemon 1: <br>Name: ${pokemonList[0].name} <br>Height: ${pokemonList[0].height} <br>Types: ${pokemonList[0].types} <br><br>`);
-document.write(`Pokemon 2: <br>Name: ${pokemonList[1].name} <br>Height: ${pokemonList[1].height} <br>Types: ${pokemonList[1].types} <br><br>`);
-document.write(`Pokemon 3: <br>Name: ${pokemonList[2].name} <br>Height: ${pokemonList[2].height} <br>Types: ${pokemonList[2].types}`);
+// iterate pokemonList
+for (let i = 0; i < pokemonList.length; i++) {
+  // check height and add comments
+  let comment = '';
+  if (pokemonList[i].height <= 5) {
+    comment = ' - It\'s so tiny!';
+  } else if (pokemonList[i].height >= 7) {
+    comment = ' - Wow, that’s big!';
+  }
+  document.write(`<span class="pokename">${pokemonList[i].name}</span> (height: ${pokemonList[i].height}, types: ${pokemonList[i].types.join(', ')})${comment}<br>`);
+}
+
