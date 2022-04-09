@@ -17,15 +17,14 @@ pokemonList = [
   }
 ];
 
-// iterate pokemonList
-for (let i = 0; i < pokemonList.length; i++) {
+// iterate pokemonList with forEach
+pokemonList.forEach(function(pokemon) {
   // check height and add comments
   let comment = '';
-  if (pokemonList[i].height <= 5) {
-    comment = ' - It\'s so tiny!';
-  } else if (pokemonList[i].height >= 7) {
-    comment = ' - Wow, that’s big!';
+  if (pokemon.height <= 5) {
+    comment = ' - It\'s so tiny!'
+  } else if (pokemon.height >= 7) { 
+      comment = ' - Wow, that’s big!';
   }
-  document.write(`<span class="pokename">${pokemonList[i].name}</span> (height: ${pokemonList[i].height}, types: ${pokemonList[i].types.join(', ')})${comment}<br>`);
-}
-
+  document.write(`<span class="pokename">${pokemon.name}</span> (height: ${pokemon.height}, types: ${pokemon.types.join(', ')})${comment}<br>`);
+});
