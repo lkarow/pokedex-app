@@ -1,5 +1,6 @@
+// IIFE for pokemonList
 let pokemonRepository = (function() {
-  // pokemonList Array
+  // pokemonList array
   let pokemonList = [];
   pokemonList = [
     {
@@ -45,22 +46,47 @@ let pokemonRepository = (function() {
     });
   };
 
+  // function to add list items
+  function addListItem(pokemon) {
+
+    // add ul, li and button to pokemon-list
+    let ul = document.querySelector('.pokemon-list');
+    let li = document.createElement('li');
+    let button = document.createElement('button');
+    button.innerText = pokemon.name;
+    button.classList.add('button-pokemon');
+
+    // append button to li in ul
+    li.appendChild(button);
+    ul.appendChild(li);
+
+    // add eventListener to button
+    clickEventListener(button, pokemon);
+  };
+
+  // function to add details to list items
+  function showDetails(pokemon) {
+    console.log(pokemon.name);
+  };
+
+  // function to add eventListener
+  function clickEventListener(button, pokemon) {
+    button.addEventListener('click', function (event) {
+      showDetails(pokemon);
+    });
+  };
+
   return {
     getAll,
     add,
-    find
+    find,
+    addListItem,
+    showDetails
   };
 
 })();
 
-// // iterate pokemonList with forEach
+// // iterate pokemonList & call addListItem function
 pokemonRepository.getAll().forEach(function(pokemon) {
-  // check height and add comments
-  let comment = '';
-  if (pokemon.height <= 5) {
-    comment = ' - It\'s so tiny!'
-  } else if (pokemon.height >= 7) { 
-      comment = ' - Wow, that\'s big!';
-  }
-  document.write(`<span class="pokename">${pokemon.name}</span> (height: ${pokemon.height}, types: ${pokemon.types.join(', ')})${comment}<br>`);
+  pokemonRepository.addListItem(pokemon);
 });
