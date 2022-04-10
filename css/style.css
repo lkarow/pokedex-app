@@ -19,7 +19,7 @@ header {
 }
 
 .diagonal-box {
-  background-color: #1d83bb;
+  background-color: #0082c9;
   height: 150px;
   position: relative;
   width: 100%;
@@ -52,8 +52,8 @@ h1 {
 
 .button-pokemon {
   background-color: rgb(211, 231, 248);
-  border: 8px double #1d83bb;
-  box-shadow: 4px 5px #1d83bb;
+  border: 8px double #0082c9;
+  box-shadow: 4px 5px #0082c9;
   color: #2b2b2b;
   font-family: "VT323", sans-serif;
   font-size: 30px;
