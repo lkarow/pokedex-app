@@ -33,11 +33,15 @@ let pokemonRepository = (function() {
 
   // function to add list items
   function addListItem(pokemon) {
+    // capitalize first letter of name
+    let pokeName = pokemon.name;
+    let pokeNameFirstLetterCap = pokemon.name.charAt(0).toUpperCase() + pokeName.slice(1);
+
     // add ul, li and button to pokemon-list
     let ul = document.querySelector('.pokemon-list');
     let li = document.createElement('li');
     let button = document.createElement('button');
-    button.innerText = pokemon.name;
+    button.innerText = pokeNameFirstLetterCap;
     button.classList.add('button-pokemon');
 
     // append button to li in ul
@@ -92,6 +96,7 @@ let pokemonRepository = (function() {
       item.height = details.height;
       item.weight = details.weight;
       item.types = details.types;
+      item.base_experience = details.base_experience;
     }).catch(function (e) {
       console.error(e);
     });
@@ -109,7 +114,7 @@ let pokemonRepository = (function() {
     // function to create modal
     function showModal(pokemon) {
       // capitalize first letter of name
-      let pokeName = pokemon.name
+      let pokeName = pokemon.name;
       let pokeNameFirstLetterCap = pokemon.name.charAt(0).toUpperCase() + pokeName.slice(1);
 
       // add every type into array
@@ -138,13 +143,17 @@ let pokemonRepository = (function() {
       modalImage.src = pokemon.imageUrl;
 
       let modalContentHeight = document.createElement('p');
-      modalContentHeight.innerText = `Height: ${pokemon.height}`;
+      modalContentHeight.innerText = `Height: ${pokemon.height / 10} m`;
 
       let modalContentWeight = document.createElement('p');
-      modalContentWeight.innerText = `Weight: ${pokemon.weight}`;
+      modalContentWeight.innerText = `Weight: ${pokemon.weight / 10} kg`;
 
       let modalContentTypes = document.createElement('p');
       modalContentTypes.innerText = `Types: ${pokeTypes.join(', ')}`;
+
+      let modalContentExp = document.createElement('p');
+      modalContentExp.innerText = `Base experience: ${pokemon.base_experience}`;
+
 
       // create close button in modal
       let closeButton = document.createElement('button');
@@ -159,6 +168,7 @@ let pokemonRepository = (function() {
       modal.appendChild(modalContentHeight);
       modal.appendChild(modalContentWeight);
       modal.appendChild(modalContentTypes);
+      modal.appendChild(modalContentExp);
       modalContainer.appendChild(modal);
 
       // activate visibility of modal
