@@ -66,6 +66,7 @@ h2 {
   border: 8px double #0082c9;
   box-shadow: 4px 5px #0082c9;
   color: #2b2b2b;
+  cursor: pointer;
   font-family: "VT323", sans-serif;
   font-size: 30px;
   height: 80px;
