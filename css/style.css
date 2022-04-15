@@ -46,7 +46,7 @@ header {
 
 h1 {
   color: var(--secondary-color);
-  font-family: "Pokemon Solid", sans-serif;
+  font-family: "Pokemon Solid", "Permanent Marker", sans-serif;
   font-size: 80px;
   letter-spacing: 6px;
   text-shadow: -2px 0 #fff, 0 2px #fff, 2px 0 #fff, 0 -2px #fff;
@@ -54,7 +54,7 @@ h1 {
 
 h2 {
   color: var(--secondary-color);
-  font-family: "Pokemon Solid", sans-serif;
+  font-family: "Pokemon Solid", "Permanent Marker", sans-serif;
   font-size: 40px;
   letter-spacing: 5px;
 }
