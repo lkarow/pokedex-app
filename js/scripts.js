@@ -25,11 +25,68 @@ let pokemonRepository = (function() {
   };
 
   // function to find pokemon by name and return it as a new array
-  function find (pokemonName) {
+  function find(pokemonName) {
     return pokemonList.filter(function (pokemon) {
       return pokemon.name === pokemonName
     });
   };
+
+  // search function
+  function searchPokemon() {
+    // get input and save as string all lower case
+    let searchedPokemon = document.getElementById('input-pokemon').value.toLowerCase();
+    console.log(searchedPokemon);
+
+    // execute find function and save object
+    let foundPokemon = find(searchedPokemon);
+    console.log(foundPokemon)
+
+    // remove all buttons for pokemons from the DOM
+    let deletePokemonButtons = document.getElementsByClassName('button-pokemon');
+    while(deletePokemonButtons.length > 0) {
+      deletePokemonButtons[0].remove()
+    };
+
+    // add pokemon button for the searched pokemon
+    addListItem(foundPokemon[0])
+  };
+  
+    // eventListener click on button for activate search
+    let buttonSearch = document.getElementById('button-search-pokemon');
+    buttonSearch.addEventListener('click', (e) => {
+      e.preventDefault();
+      searchPokemon();
+    });
+    // eventListener press enter for activate search
+    let inputPokemon = document.getElementById('input-pokemon');
+    inputPokemon.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        searchPokemon();
+      }
+    });
+
+    // reset search and load all pokemons again
+    let buttonReset = document.getElementById('button-reset-pokemon');
+    buttonReset.addEventListener('click', (e) => {
+      e.preventDefault();
+      // remove button for searched pokemon
+      let deletePokemonButtons = document.getElementsByClassName('button-pokemon');
+      while(deletePokemonButtons.length > 0) {
+        deletePokemonButtons[0].remove()
+      };
+
+      // remove all not-found-message
+      let deleteNotFound = document.getElementsByClassName('not-found');
+      while(deleteNotFound.length > 0) {
+        deleteNotFound[0].remove()
+      };
+
+      // load all pokemons again
+      pokemonRepository.getAll().forEach(function (pokemon) {
+        pokemonRepository.addListItem(pokemon);
+      });
+    })
 
   // function to add list items
   function addListItem(pokemon) {
@@ -223,13 +280,8 @@ let pokemonRepository = (function() {
 })();
 
 pokemonRepository.loadList().then(function () {
-  // data is loaded
+  // // iterate pokemonList & call addListItem function
   pokemonRepository.getAll().forEach(function (pokemon) {
     pokemonRepository.addListItem(pokemon);
   });
-});
-
-// // iterate pokemonList & call addListItem function
-pokemonRepository.getAll().forEach(function(pokemon) {
-  pokemonRepository.addListItem(pokemon);
 });
