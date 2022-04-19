@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,48 +8,53 @@
   <link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=VT323&display=swap" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=VT323&display=swap" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/pokemon-solid" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <title>Pokedex</title>
 </head>
+
 <body>
   <header>
     <div class="diagonal-box">
       <h1>Pokédex</h1>
     </div>
-</header>
+  </header>
 
-<main>
-  <!-- loading message -->
-  <div id="loading-message">
-    <div id="loading-message-content">
-      <p>
-        Loading Data ... Please wait ...
-      </p>
+  <main>
+    <!-- loading message -->
+    <div id="loading-message">
+      <div id="loading-message-content">
+        <p>
+          Loading Data ... Please wait ...
+        </p>
+      </div>
     </div>
-  </div>
 
-  <!-- modal container -->
-  <div id="modal-container">
-    <div class="modal"></div>
-  </div>
+    <!-- modal container -->
+    <div id="modal-container">
+      <div class="modal"></div>
+    </div>
 
-  <!-- search -->
-  <form class="search-container">
-    <label for="input-search-pokemon">Search for your favorite pokemon:</label><br>
-    <input id="input-pokemon" placeholder="Search for pokemons" type="text">
-    <button id="button-search-pokemon" class="button">Search</button>
-    <button id="button-reset-pokemon" class="button">Reset</button>
-  </form>
+    <!-- search -->
+    <form class="search-container">
+      <label for="input-pokemon">Search for your favorite pokemon:</label><br>
+      <div id="input-container">
+        <input id="input-pokemon" autocomplete="off" placeholder="Search for pokemons" type="text">
+        <div id="autocomplete"></div>
+      </div>
+      <button id="button-search-pokemon" class="button">Search</button>
+      <button id="button-reset-pokemon" class="button">Reset</button>
+    </form>
 
-  <!-- pokemon list start -->
-  <ul class="pokemon-list"></ul>  
-</main>
+    <!-- pokemon list start -->
+    <ul class="pokemon-list"></ul>
+  </main>
 
   <!-- load js scripts -->
   <script src="js/polyfill.min.js"></script>
   <script src="js/fetch.umd.js"></script>
   <script src="js/scripts.js"></script>
 </body>
+
 </html>

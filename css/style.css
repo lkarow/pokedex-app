@@ -141,6 +141,7 @@ h2 {
   overflow: auto;
   position: relative;
   width: 50%;
+  height: auto;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -175,7 +176,7 @@ h2 {
   font-size: 20px;
   padding: 5px;
   height: 40px;
-  width: 200px;
+  width: 100%;
 }
 
 .button {
@@ -191,5 +192,40 @@ h2 {
 .button:hover {
   border: 3px dashed var(--primary-color);
   cursor: pointer;
-  opacity: 80%;
+  opacity: 0.8;
+}
+
+/* autocomplete */
+#input-container {
+  display: inline-block;
+  margin: 0 auto;
+  width: 250px;
+}
+
+#autocomplete {
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 10px;
+  font-size: 20px;
+  height: auto;
+  padding: 5px;
+  width: 250px;
+  display: none;
+  text-align: left;
+  position: absolute;
+  z-index: 100;
+}
+
+.suggestions {
+  border-bottom: 1px solid #000;
+  cursor: pointer;
+  margin: 0;
+}
+
+.suggestions:last-child {
+  border: none;
+}
+
+.suggestions:hover {
+  background-color: var(--tertiary-color);
 }
