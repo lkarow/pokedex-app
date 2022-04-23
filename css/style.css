@@ -4,13 +4,17 @@
   --tertiary-color: rgb(211 231 248);
 }
 
+body {
+  padding-top: 100px;
+}
+
 .navbar {
   background-color: var(--primary-color);
 }
 
 h1 {
   color: var(--secondary-color);
-  font-family: "Pokemon Solid", "Permanent Marker", sans-serif;
+  font-family: 'Pokemon Solid', 'Permanent Marker', sans-serif;
   letter-spacing: 6px;
   text-shadow: -2px 0 #fff, 0 2px #fff, 2px 0 #fff, 0 -2px #fff;
 }
@@ -64,4 +68,16 @@ h1 {
 
 .suggestions:hover {
   background-color: var(--tertiary-color);
+}
+
+@media screen and (max-width: 605px) {
+  body {
+    padding-top: 130px;
+  }
+}
+
+@media screen and (max-width: 452px) {
+  body {
+    padding-top: 180px;
+  }
 }
