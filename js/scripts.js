@@ -199,7 +199,6 @@ let pokemonRepository = (function () {
             detailsUrl: item.url,
           };
           add(pokemon);
-          console.log(pokemon);
         });
       })
       .catch(function (e) {
@@ -232,7 +231,6 @@ let pokemonRepository = (function () {
     loadDetails(pokemon).then(function () {
       // load function to create modal for list item
       showModal(pokemon);
-      console.log(pokemon.name);
     });
   }
 
