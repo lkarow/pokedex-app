@@ -41,6 +41,10 @@ h1 {
   display: inline-block;
 }
 
+#input-pokemon {
+  width: 206px;
+}
+
 #autocomplete {
   background-color: #fff;
   border: 1px solid #ced4da;
