@@ -1,7 +1,7 @@
 /* eslint-env jquery */
 
 // IIFE for pokemonList
-let pokemonRepository = (function () {
+let pokemonRepository = (() => {
   // pokemonList array
   let pokemonList = [];
   // api URL
@@ -28,9 +28,7 @@ let pokemonRepository = (function () {
 
   // function to find pokemon by name and return it as a new array
   function find(pokemonName) {
-    return pokemonList.filter(function (pokemon) {
-      return pokemon.name === pokemonName;
-    });
+    return pokemonList.filter((pokemon) => pokemon.name === pokemonName);
   }
 
   // search function
@@ -95,22 +93,22 @@ let pokemonRepository = (function () {
         autocomplete.innerHTML = '';
 
         // iterate through pokemonListFilter, append matching pokemons as suggestions
-        for (let i = 0; i < pokemonListFilter.length; i++) {
+        pokemonListFilter.forEach((pokemonListFilterItem) => {
           let searchSuggestion = document.createElement('p');
           searchSuggestion.classList.add('suggestions');
           // if clicked on suggestion set value of search bar to the selected suggestion & execute search function
+          const { name } = pokemonListFilterItem;
           searchSuggestion.addEventListener('click', () => {
-            inputPokemon.value =
-              pokemonListFilter[i].name.charAt(0).toUpperCase() +
-              pokemonListFilter[i].name.slice(1);
+            inputPokemon.value = `${name.charAt(0).toUpperCase()}${name.slice(
+              1
+            )}`;
             searchPokemon();
           });
           // set innerText of suggestion element to pokemon name (first letter uppercase)
           searchSuggestion.innerText =
-            pokemonListFilter[i].name.charAt(0).toUpperCase() +
-            pokemonListFilter[i].name.slice(1);
+            name.charAt(0).toUpperCase() + name.slice(1);
           autocomplete.appendChild(searchSuggestion);
-        }
+        });
       } else {
         autocomplete.style.display = 'none';
       }
@@ -138,17 +136,20 @@ let pokemonRepository = (function () {
     removeAllLiTags();
 
     // load all pokemons again
-    pokemonRepository.getAll().forEach(function (pokemon) {
-      pokemonRepository.addListItem(pokemon);
-    });
+    pokemonRepository
+      .getAll()
+      .forEach((pokemon) => pokemonRepository.addListItem(pokemon));
+
+    inputPokemon.value = '';
   });
 
   // function to add list items
   function addListItem(pokemon) {
     // capitalize first letter of name
-    let pokeName = pokemon.name;
-    let pokeNameFirstLetterCap =
-      pokemon.name.charAt(0).toUpperCase() + pokeName.slice(1);
+    const { name } = pokemon;
+    let pokeNameFirstLetterCap = `${name.charAt(0).toUpperCase()}${name.slice(
+      1
+    )}`;
 
     // add ul, li and button to pokemon-list
     let ul = document.querySelector('.pokemon-list');
@@ -181,19 +182,15 @@ let pokemonRepository = (function () {
 
   // function to add eventListener for clicking on pokemon buttons
   function clickEventListener(button, pokemon) {
-    button.addEventListener('click', function () {
-      showDetails(pokemon);
-    });
+    button.addEventListener('click', () => showDetails(pokemon));
   }
 
   // function to load pokemon list
   function loadList() {
     return fetch(apiUrl)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (json) {
-        json.results.forEach(function (item) {
+      .then((response) => response.json())
+      .then((json) => {
+        json.results.forEach((item) => {
           let pokemon = {
             name: item.name,
             detailsUrl: item.url,
@@ -201,19 +198,15 @@ let pokemonRepository = (function () {
           add(pokemon);
         });
       })
-      .catch(function (e) {
-        console.error(e);
-      });
+      .catch((e) => console.error(e));
   }
 
   // function to load details for pokemon items
   function loadDetails(item) {
     let url = item.detailsUrl;
     return fetch(url)
-      .then(function (response) {
-        return response.json();
-      })
-      .then(function (details) {
+      .then((response) => response.json())
+      .then((details) => {
         // add details to item
         item.imageUrl = details.sprites.other['official-artwork'].front_default;
         item.height = details.height;
@@ -221,17 +214,12 @@ let pokemonRepository = (function () {
         item.types = details.types;
         item.base_experience = details.base_experience;
       })
-      .catch(function (e) {
-        console.error(e);
-      });
+      .catch((e) => console.error(e));
   }
 
   // function to show details for list items
   function showDetails(pokemon) {
-    loadDetails(pokemon).then(function () {
-      // load function to create modal for list item
-      showModal(pokemon);
-    });
+    loadDetails(pokemon).then(() => showModal(pokemon));
   }
 
   // function to create modal
@@ -295,9 +283,9 @@ let pokemonRepository = (function () {
   };
 })();
 
-pokemonRepository.loadList().then(function () {
+pokemonRepository.loadList().then(() => {
   // // iterate pokemonList & call addListItem function
-  pokemonRepository.getAll().forEach(function (pokemon) {
-    pokemonRepository.addListItem(pokemon);
-  });
+  pokemonRepository
+    .getAll()
+    .forEach((pokemon) => pokemonRepository.addListItem(pokemon));
 });
